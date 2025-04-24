@@ -7,14 +7,20 @@ type SpawnWindowProps = {
   title: string;
   content: React.ReactNode;
   onClose: () => void;
+  size?: { width: number; height: number };
 };
 
 const SpawnWindow: React.FC<SpawnWindowProps> = ({
   title,
   content,
   onClose,
+  size,
 }) => {
   if (typeof document === "undefined") return null;
+
+  // determine window dimensions
+  const width = size?.width ?? 800;
+  const height = size?.height ?? 600;
 
   return ReactDOM.createPortal(
     <motion.div
@@ -25,12 +31,13 @@ const SpawnWindow: React.FC<SpawnWindowProps> = ({
       dragConstraints={{
         top: 0,
         left: 0,
-        right: window.innerWidth - 700,
-        bottom: window.innerHeight - 300,
+        right: window.innerWidth - width,
+        bottom: window.innerHeight - height,
       }}
       exit={{ scale: 0, opacity: 0 }}
       transition={{ duration: 0.3 }}
-      className="absolute top-40 left-40 text-black bg-white w-[800px] h-[600px] border border-black rounded-lg shadow-xl z-50"
+      className="absolute top-40 left-40 text-black bg-white border border-black rounded-lg shadow-xl z-50"
+      style={{ width, height }}
     >
       <div className="handle cursor-move  p-2  justify-between  rounded-t-lg w-full h-16 bg-gray-800 flex items-center pl-4">
         <span className="text-2xl font-[family-name:var(--font-jetbrains-mono)] text-white">

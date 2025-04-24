@@ -2,10 +2,12 @@
 import React, { useState } from "react";
 import {
   FaInfoCircle,
-  FaLink,
   FaFolder,
   FaQuestion,
+  FaLink,
   FaEnvelope,
+  FaGithub,
+  FaLinkedin,
 } from "react-icons/fa";
 import SpawnWindow from "./SpawnWindow";
 import { nanoid } from "nanoid";
@@ -63,32 +65,41 @@ const ProfileBox = () => {
         );
       case "links":
         return (
-          <ul className="space-y-2">
-            <li>
-              <a
-                href="https://github.com/you"
-                className="text-blue-600 underline"
-              >
+          <div className="space-y-4 flex flex-col items-center">
+            <a
+              href="https://github.com/ThiccestZexie"
+              className="flex items-center space-x-2 text-blue-600 hover:text-blue-800"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaGithub size={60} />
+              <span className="font-[family-name:var(--font-jetbrains-mono)]">
                 GitHub
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://linkedin.com/in/you"
-                className="text-blue-600 underline"
-              >
+              </span>
+            </a>
+            <a
+              href="https://www.linkedin.com/in/daniel-alchasov-8133001aa/"
+              className="flex items-center space-x-2 text-blue-600 hover:text-blue-800"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaLinkedin size={60} />
+              <span className="font-[family-name:var(--font-jetbrains-mono)]">
                 LinkedIn
-              </a>
-            </li>
-            <li>
-              <a
-                href="mailto:you@email.com"
-                className="text-blue-600 underline"
-              >
+              </span>
+            </a>
+            <a
+              href="mailto:noone@email.com"
+              className="flex items-center space-x-2 text-blue-600 hover:text-blue-800"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaEnvelope size={60} />
+              <span className="font-[family-name:var(--font-jetbrains-mono)]">
                 Email
-              </a>
-            </li>
-          </ul>
+              </span>
+            </a>
+          </div>
         );
 
       case "projects":
@@ -103,12 +114,18 @@ const ProfileBox = () => {
               <p className="mt-2">Project 1: A portfolio site</p>
             </div>
             <div className="border p-2 rounded">
-              <img
-                src="/images/project2.png"
-                alt="Project 2"
-                className="w-full h-auto rounded"
-              />
-              <p className="mt-2">Project 2: AI-powered notes</p>
+              <a
+                href="https://github.com/ThiccestZexie/MediocreShowList"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src="/images/medio.png"
+                  alt="Project 2"
+                  className="w-full h-auto rounded"
+                />
+              </a>
+              <p className="mt-2">Mediocre Show List: A simple React project</p>
             </div>
           </div>
         );
@@ -128,7 +145,7 @@ const ProfileBox = () => {
       <div className="p-6 flex flex-col items-center">
         <div className="w-32 h-32 rounded-full bg-gray-300 mb-4" />
         <h2 className="text-4xl text-black font-[family-name:var(--font-jetbrains-mono)]">
-          Hi! <span className="text-orange-500 font-bold">I'm Daniel</span>
+          hi! <span className="text-orange-500 font-bold">i'm daniel</span>
         </h2>
         <p className="text-black mt-2">Student By Day Degen By Night</p>
 
@@ -168,6 +185,11 @@ const ProfileBox = () => {
       {openWindows.map((win) => (
         <SpawnWindow
           key={win.id}
+          size={
+            win.type === "links"
+              ? { width: 500, height: 300 }
+              : { width: 800, height: 600 }
+          }
           title={getTitle(win.type)}
           content={renderContent(win.type)}
           onClose={() => handleClose(win.id)}
