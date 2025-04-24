@@ -14,7 +14,7 @@ export default function Home() {
           height: 20,
           amplitude: 30,
           speed: 0.15,
-          points: 3,
+          points: 8,
         }}
       />
       <div className="flex justify-center  items-center flex-col z-10 relative h-full">

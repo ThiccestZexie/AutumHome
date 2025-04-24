@@ -1,6 +1,16 @@
+"use client";
 import React from "react";
+import {
+  FaInfoCircle,
+  FaLink,
+  FaFolder,
+  FaQuestion,
+  FaEnvelope,
+} from "react-icons/fa";
 
 const ProfileBox = () => {
+  const handleAbout = () => alert("Yeah you wish you were my gf");
+
   return (
     <div className="w-[800px] h-[600px] bg-white shadow-lg rounded-md border-2 border-black overflow-hidden">
       {/* Top rectangle with header */}
@@ -18,9 +28,38 @@ const ProfileBox = () => {
         </h2>
         <p className="text-black mt-2">Student, Developer and a Soldier</p>
         {/* Add icons or links here as needed */}
-        <h3 className="text-2xl mt-4 text-black font-[family-name:var(--font-jetbrains-mono)]">
-          Contact Me
-        </h3>
+        <div className="0 mt-20 spac relative ">
+          <div className="flex space-x-15">
+            <div
+              onClick={handleAbout}
+              role="button"
+              tabIndex={0}
+              className="flex flex-col items-center size-auto cursor-pointer"
+            >
+              <FaInfoCircle size={48} color="orange" />
+              <span className="text-sm mt-1 1 text-amber-800">about</span>
+            </div>
+            <div
+              onClick={handleAbout}
+              role="button"
+              tabIndex={0}
+              className="flex flex-col items-center size-auto cursor-pointer"
+            >
+              <FaLink size={48} color="orange" />
+              <span className="text-sm mt-1 1 text-amber-800">links</span>
+            </div>
+
+            <div
+              onClick={handleAbout}
+              role="button"
+              tabIndex={0}
+              className="flex flex-col items-center cursor-pointer"
+            >
+              <FaFolder size={48} color="orange" />
+              <span className="text-sm mt-1 text-amber-800">projects</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
