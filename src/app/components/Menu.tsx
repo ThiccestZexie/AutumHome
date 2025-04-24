@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import {
   FaInfoCircle,
   FaLink,
@@ -7,60 +7,166 @@ import {
   FaQuestion,
   FaEnvelope,
 } from "react-icons/fa";
+import SpawnWindow from "./SpawnWindow";
+import { nanoid } from "nanoid";
+import SquareBox from "./SquareBox";
+
+type WindowType = "about" | "links" | "projects";
+
+type OpenWindow = {
+  id: string;
+  type: WindowType;
+};
 
 const ProfileBox = () => {
-  const handleAbout = () => alert("Yeah you wish you were my gf");
+  const [openWindows, setOpenWindows] = useState<OpenWindow[]>([]);
+
+  const handleOpen = (type: WindowType) => {
+    setOpenWindows((w) => [...w, { id: nanoid(), type }]);
+  };
+
+  const handleClose = (id: string) => {
+    setOpenWindows((w) => w.filter((win) => win.id !== id));
+  };
+
+  const getTitle = (type: WindowType) => {
+    switch (type) {
+      case "about":
+        return "https://autumfalls.home/about";
+      case "links":
+        return "https://autumfalls.home/links";
+      case "projects":
+        return "https://autumfalls.home/projects";
+      default:
+        return "https://autumfalls.home/unknown";
+    }
+  };
+
+  const renderContent = (type: WindowType) => {
+    switch (type) {
+      case "about":
+        return (
+          <div>
+            <p className="text-black mb-1 font-[family-name:var(--font-jetbrains-mono)] ">
+              Hello! I'm a developer with a love for clean UI, animation, and
+              building weird fun stuff online 🛠️
+            </p>
+            <ul className="list-disc pl-5 mt-3">
+              <SquareBox></SquareBox>
+            </ul>
+          </div>
+        );
+      case "links":
+        return (
+          <div className="grid grid-cols-2 gap-4">
+            <div className="border p-2 rounded">
+              <img
+                src="/images/project1.png"
+                alt="Project 1"
+                className="w-full h-auto rounded"
+              />
+              <p className="mt-2">Project 1: A portfolio site</p>
+            </div>
+            <div className="border p-2 rounded">
+              <img
+                src="/images/project2.png"
+                alt="Project 2"
+                className="w-full h-auto rounded"
+              />
+              <p className="mt-2">Project 2: AI-powered notes</p>
+            </div>
+          </div>
+        );
+      case "projects":
+        return (
+          <ul className="space-y-2">
+            <li>
+              <a
+                href="https://github.com/you"
+                className="text-blue-600 underline"
+              >
+                GitHub
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://linkedin.com/in/you"
+                className="text-blue-600 underline"
+              >
+                LinkedIn
+              </a>
+            </li>
+            <li>
+              <a
+                href="mailto:you@email.com"
+                className="text-blue-600 underline"
+              >
+                Email
+              </a>
+            </li>
+          </ul>
+        );
+    }
+  };
 
   return (
-    <div className="w-[800px] h-[600px] bg-white shadow-lg rounded-md border-2 border-black overflow-hidden">
-      {/* Top rectangle with header */}
+    <div className="relative w-[800px] h-[600px] bg-white shadow-lg rounded-md border-2 border-black overflow-hidden">
+      {/* Top bar */}
       <div className="w-full h-16 bg-gray-800 flex items-center pl-4">
-        <h1 className="text-2xl font-[family-name:var(--font-jetbrains-mono)]">
+        <h1 className="text-2xl font-[family-name:var(--font-jetbrains-mono)] text-white">
           https://autumfalls.home/homepage
         </h1>
       </div>
 
-      {/* Rest of the content */}
+      {/* Main Content */}
       <div className="p-6 flex flex-col items-center">
-        <div className="w-32 h-32 rounded-full bg-gray-300 mb-4"></div>
+        <div className="w-32 h-32 rounded-full bg-gray-300 mb-4" />
         <h2 className="text-4xl text-black font-[family-name:var(--font-jetbrains-mono)]">
           Hi! <span className="text-orange-500 font-bold">I'm Daniel</span>
         </h2>
         <p className="text-black mt-2">Student, Developer and a Soldier</p>
-        {/* Add icons or links here as needed */}
-        <div className="0 mt-20 spac relative ">
-          <div className="flex space-x-15">
-            <div
-              onClick={handleAbout}
-              role="button"
-              tabIndex={0}
-              className="flex flex-col items-center size-auto cursor-pointer"
-            >
-              <FaInfoCircle size={48} color="orange" />
-              <span className="text-sm mt-1 1 text-amber-800">about</span>
-            </div>
-            <div
-              onClick={handleAbout}
-              role="button"
-              tabIndex={0}
-              className="flex flex-col items-center size-auto cursor-pointer"
-            >
-              <FaLink size={48} color="orange" />
-              <span className="text-sm mt-1 1 text-amber-800">links</span>
-            </div>
 
-            <div
-              onClick={handleAbout}
-              role="button"
-              tabIndex={0}
-              className="flex flex-col items-center cursor-pointer"
-            >
-              <FaFolder size={48} color="orange" />
-              <span className="text-sm mt-1 text-amber-800">projects</span>
-            </div>
+        {/* Icons / Buttons */}
+        <div className="mt-20 flex space-x-16">
+          <div
+            onClick={() => handleOpen("about")}
+            role="button"
+            tabIndex={0}
+            className="flex flex-col items-center cursor-pointer"
+          >
+            <FaInfoCircle size={48} color="orange" />
+            <span className="text-sm mt-1 text-amber-800">about</span>
+          </div>
+          <div
+            onClick={() => handleOpen("links")}
+            role="button"
+            tabIndex={0}
+            className="flex flex-col items-center cursor-pointer"
+          >
+            <FaLink size={48} color="orange" />
+            <span className="text-sm mt-1 text-amber-800">links</span>
+          </div>
+          <div
+            onClick={() => handleOpen("projects")}
+            role="button"
+            tabIndex={0}
+            className="flex flex-col items-center cursor-pointer"
+          >
+            <FaFolder size={48} color="orange" />
+            <span className="text-sm mt-1 text-amber-800">projects</span>
           </div>
         </div>
       </div>
+
+      {/* Spawn multiple windows */}
+      {openWindows.map((win) => (
+        <SpawnWindow
+          key={win.id}
+          title={getTitle(win.type)}
+          content={renderContent(win.type)}
+          onClose={() => handleClose(win.id)}
+        />
+      ))}
     </div>
   );
 };
