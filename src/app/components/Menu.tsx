@@ -130,7 +130,7 @@ const ProfileBox = () => {
         <h2 className="text-4xl text-black font-[family-name:var(--font-jetbrains-mono)]">
           Hi! <span className="text-orange-500 font-bold">I'm Daniel</span>
         </h2>
-        <p className="text-black mt-2">Student, Developer and a Soldier</p>
+        <p className="text-black mt-2">Student By Day Degen By Night</p>
 
         {/* Icons / Buttons */}
         <div className="mt-20 flex space-x-16">
