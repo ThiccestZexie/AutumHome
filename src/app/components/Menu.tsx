@@ -22,11 +22,15 @@ const ProfileBox = () => {
   const [openWindows, setOpenWindows] = useState<OpenWindow[]>([]);
 
   const handleOpen = (type: WindowType) => {
-    setOpenWindows((w) => [...w, { id: nanoid(), type }]);
+    setOpenWindows((ws) =>
+      ws.some((w) => w.type === type)
+        ? ws.filter((w) => w.type !== type)
+        : [...ws, { id: nanoid(), type }]
+    );
   };
 
   const handleClose = (id: string) => {
-    setOpenWindows((w) => w.filter((win) => win.id !== id));
+    setOpenWindows((ws) => ws.filter((w) => w.id !== id));
   };
 
   const getTitle = (type: WindowType) => {
@@ -48,8 +52,9 @@ const ProfileBox = () => {
         return (
           <div>
             <p className="text-black mb-1 font-[family-name:var(--font-jetbrains-mono)] ">
-              Hello! I'm a developer with a love for clean UI, animation, and
-              building weird fun stuff online 🛠️
+              I am a student, developer, and soldier. I am passionate about
+              technology and love to learn new things. I am currently studying
+              computer science and working on various projects in my free time.
             </p>
             <ul className="list-disc pl-5 mt-3">
               <SquareBox></SquareBox>
@@ -57,27 +62,6 @@ const ProfileBox = () => {
           </div>
         );
       case "links":
-        return (
-          <div className="grid grid-cols-2 gap-4">
-            <div className="border p-2 rounded">
-              <img
-                src="/images/project1.png"
-                alt="Project 1"
-                className="w-full h-auto rounded"
-              />
-              <p className="mt-2">Project 1: A portfolio site</p>
-            </div>
-            <div className="border p-2 rounded">
-              <img
-                src="/images/project2.png"
-                alt="Project 2"
-                className="w-full h-auto rounded"
-              />
-              <p className="mt-2">Project 2: AI-powered notes</p>
-            </div>
-          </div>
-        );
-      case "projects":
         return (
           <ul className="space-y-2">
             <li>
@@ -105,6 +89,28 @@ const ProfileBox = () => {
               </a>
             </li>
           </ul>
+        );
+
+      case "projects":
+        return (
+          <div className="grid grid-cols-2 gap-4">
+            <div className="border p-2 rounded">
+              <img
+                src="/images/project1.png"
+                alt="Project 1"
+                className="w-full h-auto rounded"
+              />
+              <p className="mt-2">Project 1: A portfolio site</p>
+            </div>
+            <div className="border p-2 rounded">
+              <img
+                src="/images/project2.png"
+                alt="Project 2"
+                className="w-full h-auto rounded"
+              />
+              <p className="mt-2">Project 2: AI-powered notes</p>
+            </div>
+          </div>
         );
     }
   };

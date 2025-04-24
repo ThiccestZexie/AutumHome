@@ -17,6 +17,7 @@ export default function Home() {
           points: 8,
         }}
       />
+
       <div className="flex justify-center  items-center flex-col z-10 relative h-full">
         <Menu />
       </div>
