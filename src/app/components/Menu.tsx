@@ -106,12 +106,20 @@ const ProfileBox = () => {
         return (
           <div className="grid grid-cols-2 gap-4">
             <div className="border p-2 rounded">
-              <img
-                src="/images/project1.png"
-                alt="Project 1"
-                className="w-full h-auto rounded"
-              />
-              <p className="mt-2">Project 1: A portfolio site</p>
+              <a
+                href="https://github.com/ThiccestZexie"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src="/images/portfolio.png"
+                  alt="Project 1"
+                  className="w-full h-50 rounded"
+                />
+              </a>
+              <p className="mt-2 font-[family-name:var(--font-jetbrains-mono)]">
+                Literally this website!
+              </p>
             </div>
             <div className="border p-2 rounded">
               <a
@@ -122,10 +130,12 @@ const ProfileBox = () => {
                 <img
                   src="/images/medio.png"
                   alt="Project 2"
-                  className="w-full h-auto rounded"
+                  className="w-full h-50 rounded"
                 />
               </a>
-              <p className="mt-2">Mediocre Show List: A simple React project</p>
+              <p className="mt-2 font-[family-name:var(--font-jetbrains-mono)] ">
+                Mediocre Show List: A simple React project
+              </p>
             </div>
           </div>
         );
@@ -150,14 +160,14 @@ const ProfileBox = () => {
         <p className="text-black mt-2">Student By Day Degen By Night</p>
 
         {/* Icons / Buttons */}
-        <div className="mt-20 flex space-x-16">
+        <div className="mt-20 flex  space-x-16">
           <div
             onClick={() => handleOpen("about")}
             role="button"
             tabIndex={0}
             className="flex flex-col items-center cursor-pointer"
           >
-            <FaInfoCircle size={48} color="orange" />
+            <FaInfoCircle size={60} color="orange" />
             <span className="text-sm mt-1 text-amber-800">about</span>
           </div>
           <div
@@ -166,7 +176,7 @@ const ProfileBox = () => {
             tabIndex={0}
             className="flex flex-col items-center cursor-pointer"
           >
-            <FaLink size={48} color="orange" />
+            <FaLink size={60} color="orange" />
             <span className="text-sm mt-1 text-amber-800">links</span>
           </div>
           <div
@@ -175,7 +185,7 @@ const ProfileBox = () => {
             tabIndex={0}
             className="flex flex-col items-center cursor-pointer"
           >
-            <FaFolder size={48} color="orange" />
+            <FaFolder size={60} color="orange" />
             <span className="text-sm mt-1 text-amber-800">projects</span>
           </div>
         </div>
