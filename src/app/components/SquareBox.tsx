@@ -1,7 +1,14 @@
 import { useState } from "react";
 import Tag from "./Tag";
 export default function TagsSection() {
-  const toolsTags = ["VSCode", "Git", "KiCad ", "Figma"];
+  const toolsTags = [
+    "VSCode",
+    "Git",
+    "KiCad ",
+    "Figma",
+    "Agile Methodology",
+    "Scrum",
+  ];
 
   const devTags = [
     "C#",

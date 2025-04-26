@@ -10,6 +10,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "At Home Autumn Falls",
   description: "I be at home in autumn falls",
+  icons: { icon: "/ico.jpg" },
 };
 
 export default function RootLayout({

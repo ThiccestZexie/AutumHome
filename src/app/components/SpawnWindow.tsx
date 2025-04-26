@@ -24,6 +24,7 @@ const SpawnWindow: React.FC<SpawnWindowProps> = ({
 
   return ReactDOM.createPortal(
     <motion.div
+      className="overflow-hidden absolute top-40 left-40 text-black bg-white border border-black rounded-lg shadow-xl z-50"
       drag
       initial={{ scale: 0, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
@@ -36,7 +37,6 @@ const SpawnWindow: React.FC<SpawnWindowProps> = ({
       }}
       exit={{ scale: 0, opacity: 0 }}
       transition={{ duration: 0.3 }}
-      className="absolute top-40 left-40 text-black bg-white border border-black rounded-lg shadow-xl z-50"
       style={{ width, height }}
     >
       <div className="handle cursor-move  p-2  justify-between  rounded-t-lg w-full h-16 bg-gray-800 flex items-center pl-4">
