@@ -36,7 +36,7 @@ const projects: Project[] = [
     id: "portfolio",
     name: "Autum Portfolio",
     title: "https://autumfalls.home/projects/portfolio",
-    imgSrc: "/images/portfolio.png",
+    imgSrc: "./portfolio.png",
     description:
       "Literally this website built with Next.js, React and Tailwind. It is a simple portfolio website that showcases my projects and skills.I tried to make it look like a browsing experience with my favorite color scheme",
     tags: ["Next.js", "React", "Tailwind", "TypeScript"],
@@ -46,7 +46,7 @@ const projects: Project[] = [
     id: "mediocreShowList",
     name: "Mediocre Show List",
     title: "https://autumfalls.home/projects/ShowList",
-    imgSrc: "/images/medio.png",
+    imgSrc: "/medio.png",
     description:
       "A simple React project to keep track of your shows and anime. its not fully functionnal yet but taught me a lot about API calls, state management and hooks.",
     tags: ["React", "JavaScript", "CSS", "API"],
@@ -66,7 +66,7 @@ const projects: Project[] = [
     id: "Supreme-octo-carnival",
     name: "Supreme-octo-carnival",
     title: "https://autumfalls.home/projects/Supreme",
-    imgSrc: "/images/Octo.png",
+    imgSrc: "/Octo.png",
     description:
       "A Java game made with only Swing during my course work. Taught me a lot abotu Java and OOP concepts. Made during the coruse TDDE30",
     tags: ["Java", "Swing", "OOP"],
@@ -87,7 +87,7 @@ const projects: Project[] = [
 const ProfileBox = () => {
   const clickAudio = useMemo(() => {
     if (typeof window === "undefined") return null;
-    const audio = new Audio("/sounds/click1.wav");
+    const audio = new Audio("/click1.wav");
     audio.preload = "auto";
     audio.load();
     return audio;
