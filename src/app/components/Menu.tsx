@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import {
   FaInfoCircle,
   FaFolder,
@@ -55,6 +55,15 @@ const projects: Project[] = [
 ];
 
 const ProfileBox = () => {
+  // set up click sound
+  const clickAudioRef = useRef<HTMLAudioElement>(
+    new Audio("/sounds/click1.wav")
+  );
+  const playClickSound = () => {
+    clickAudioRef.current.currentTime = 0;
+    clickAudioRef.current.play();
+  };
+
   const [openWindows, setOpenWindows] = useState<OpenWindow[]>([]);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
@@ -67,6 +76,7 @@ const ProfileBox = () => {
   };
 
   const handleClose = (id: string) => {
+    playClickSound();
     setOpenWindows((ws) => ws.filter((w) => w.id !== id));
   };
 
@@ -143,7 +153,10 @@ const ProfileBox = () => {
             {projects.map((proj) => (
               <div
                 key={proj.id}
-                onClick={() => setSelectedProject(proj)}
+                onClick={() => {
+                  playClickSound();
+                  setSelectedProject(proj);
+                }}
                 className="border p-4 rounded-lg shadow hover:shadow-lg transition-all duration-200 flex flex-col items-center space-y-2 cursor-pointer bg-white"
               >
                 <img
@@ -182,7 +195,10 @@ const ProfileBox = () => {
         {/* Icons / Buttons */}
         <div className="mt-20 flex  space-x-16">
           <div
-            onClick={() => handleOpen("about")}
+            onClick={() => {
+              playClickSound();
+              handleOpen("about");
+            }}
             role="button"
             tabIndex={0}
             className="flex flex-col items-center cursor-pointer"
@@ -191,7 +207,10 @@ const ProfileBox = () => {
             <span className="text-sm mt-1 text-amber-800">about</span>
           </div>
           <div
-            onClick={() => handleOpen("links")}
+            onClick={() => {
+              playClickSound();
+              handleOpen("links");
+            }}
             role="button"
             tabIndex={0}
             className="flex flex-col items-center cursor-pointer"
@@ -200,7 +219,10 @@ const ProfileBox = () => {
             <span className="text-sm mt-1 text-amber-800">links</span>
           </div>
           <div
-            onClick={() => handleOpen("projects")}
+            onClick={() => {
+              playClickSound();
+              handleOpen("projects");
+            }}
             role="button"
             tabIndex={0}
             className="flex flex-col items-center cursor-pointer"
@@ -262,7 +284,10 @@ const ProfileBox = () => {
               </div>
             </div>
           }
-          onClose={() => setSelectedProject(null)}
+          onClose={() => {
+            playClickSound();
+            setSelectedProject(null);
+          }}
         />
       )}
     </div>
