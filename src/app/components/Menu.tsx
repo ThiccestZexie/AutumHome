@@ -13,6 +13,7 @@ import SpawnWindow from "./SpawnWindow";
 import { nanoid } from "nanoid";
 import SquareBox from "./SquareBox";
 import Tag from "./Tag";
+import { Howl } from "howler";
 
 type WindowType = "about" | "links" | "projects";
 
@@ -85,20 +86,17 @@ const projects: Project[] = [
 ];
 
 const ProfileBox = () => {
-  const clickAudio = useMemo(() => {
-    if (typeof window === "undefined") return null;
-    const audio = new Audio("./click1.mp3");
-    audio.preload = "auto";
-    audio.load();
-    return audio;
+  const clickSound = useMemo(() => {
+    return new Howl({
+      src: ["/click1.mp3"], // served from public/
+      preload: true,
+      volume: 0.5,
+    });
   }, []);
 
   const playClickSound = () => {
-    if (!clickAudio) return;
-    clickAudio.currentTime = 0;
-    clickAudio.play().catch((err) => {
-      console.error("click audio play failed:", err);
-    });
+    clickSound.stop(); // reset to start
+    clickSound.play();
   };
   const [openWindows, setOpenWindows] = useState<OpenWindow[]>([]);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
