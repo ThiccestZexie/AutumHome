@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import Tag from "./Tag";
 export default function TagsSection() {
   const toolsTags = ["VSCode", "Git", "KiCad ", "Figma"];
 

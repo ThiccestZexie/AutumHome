@@ -12,6 +12,7 @@ import {
 import SpawnWindow from "./SpawnWindow";
 import { nanoid } from "nanoid";
 import SquareBox from "./SquareBox";
+import Tag from "./Tag";
 
 type WindowType = "about" | "links" | "projects";
 
@@ -20,8 +21,42 @@ type OpenWindow = {
   type: WindowType;
 };
 
+type Project = {
+  id: string;
+  title: string;
+  name: string;
+  imgSrc: string;
+  description: string;
+  tags: string[];
+  link: string;
+};
+
+const projects: Project[] = [
+  {
+    id: "portfolio",
+    name: "Autum Portfolio",
+    title: "https://autumfalls.home/projects/portfolio",
+    imgSrc: "/images/portfolio.png",
+    description:
+      "Literally this website built with Next.js, React and Tailwind. It is a simple portfolio website that showcases my projects and skills",
+    tags: ["Next.js", "React", "Tailwind", "TypeScript"],
+    link: "https://github.com/ThiccestZexie",
+  },
+  {
+    id: "mediocreShowList",
+    name: "Mediocre Show List",
+    title: "https://autumfalls.home/projects/ShowList",
+    imgSrc: "/images/medio.png",
+    description:
+      "A simple React project to keep track of your shows and anime. its not fully functionnal yet but taught me a lot about API calls, state management and hooks.",
+    tags: ["React", "JavaScript", "CSS", "API"],
+    link: "https://github.com/ThiccestZexie/MediocreShowList",
+  },
+];
+
 const ProfileBox = () => {
   const [openWindows, setOpenWindows] = useState<OpenWindow[]>([]);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   const handleOpen = (type: WindowType) => {
     setOpenWindows((ws) =>
@@ -104,39 +139,24 @@ const ProfileBox = () => {
 
       case "projects":
         return (
-          <div className="grid grid-cols-2 gap-4">
-            <div className="border p-2 rounded">
-              <a
-                href="https://github.com/ThiccestZexie"
-                target="_blank"
-                rel="noopener noreferrer"
+          <div className="grid grid-cols-2 gap-6">
+            {projects.map((proj) => (
+              <div
+                key={proj.id}
+                onClick={() => setSelectedProject(proj)}
+                className="border p-4 rounded-lg shadow hover:shadow-lg transition-all duration-200 flex flex-col items-center space-y-2 cursor-pointer bg-white"
               >
                 <img
-                  src="/images/portfolio.png"
-                  alt="Project 1"
-                  className="w-full h-50 rounded"
+                  src={proj.imgSrc}
+                  alt={proj.title}
+                  className="w-full h-40 object-cover rounded"
                 />
-              </a>
-              <p className="mt-2 font-[family-name:var(--font-jetbrains-mono)]">
-                Literally this website!
-              </p>
-            </div>
-            <div className="border p-2 rounded">
-              <a
-                href="https://github.com/ThiccestZexie/MediocreShowList"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img
-                  src="/images/medio.png"
-                  alt="Project 2"
-                  className="w-full h-50 rounded"
-                />
-              </a>
-              <p className="mt-2 font-[family-name:var(--font-jetbrains-mono)] ">
-                Mediocre Show List: A simple React project
-              </p>
-            </div>
+
+                <p className="mt-2 font-[family-name:var(--font-jetbrains-mono)] text-center">
+                  {proj.name}
+                </p>
+              </div>
+            ))}
           </div>
         );
     }
@@ -191,7 +211,7 @@ const ProfileBox = () => {
         </div>
       </div>
 
-      {/* Spawn multiple windows */}
+      {/* existing windows */}
       {openWindows.map((win) => (
         <SpawnWindow
           key={win.id}
@@ -205,6 +225,46 @@ const ProfileBox = () => {
           onClose={() => handleClose(win.id)}
         />
       ))}
+
+      {/* new project‑detail window */}
+      {selectedProject && (
+        <SpawnWindow
+          key={selectedProject.id}
+          size={{ width: 700, height: 500 }}
+          title={selectedProject.title}
+          content={
+            <div className="flex h-full font-[family-name:var(--font-jetbrains-mono)]">
+              <img
+                src={selectedProject.imgSrc}
+                alt={selectedProject.title}
+                className="w-2/5 h-3/4 object-cover rounded-l"
+              />
+              <div className="p-4 flex-1 flex flex-col">
+                <p className="mb-4 font-[family-name:var(--font-jetbrains-mono)]">
+                  {selectedProject.description}
+                </p>
+                <h2 className="text-xl font-semibold text-gray-800 mb-4">
+                  Skills
+                </h2>
+                <div className=" flex flex-wrap gap-2">
+                  {selectedProject.tags.map((tag) => (
+                    <Tag key={tag} text={tag} />
+                  ))}
+                </div>
+                <a
+                  href={selectedProject.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-4 text-blue-600 hover:underline"
+                >
+                  Open Project
+                </a>
+              </div>
+            </div>
+          }
+          onClose={() => setSelectedProject(null)}
+        />
+      )}
     </div>
   );
 };
