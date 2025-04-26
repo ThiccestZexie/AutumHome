@@ -1,4 +1,5 @@
 "use client";
+import { Howl } from "howler";
 import React, { useState, useRef, useEffect, useMemo } from "react";
 import {
   FaInfoCircle,
@@ -13,7 +14,6 @@ import SpawnWindow from "./SpawnWindow";
 import { nanoid } from "nanoid";
 import SquareBox from "./SquareBox";
 import Tag from "./Tag";
-import { Howl } from "howler";
 
 type WindowType = "about" | "links" | "projects";
 
