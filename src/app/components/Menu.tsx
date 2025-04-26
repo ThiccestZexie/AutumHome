@@ -87,7 +87,7 @@ const projects: Project[] = [
 const ProfileBox = () => {
   const clickAudio = useMemo(() => {
     if (typeof window === "undefined") return null;
-    const audio = new Audio("./click1.wav");
+    const audio = new Audio("./click1.mp3");
     audio.preload = "auto";
     audio.load();
     return audio;
