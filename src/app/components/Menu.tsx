@@ -85,15 +85,13 @@ const projects: Project[] = [
   },
 ];
 
-const ProfileBox = () => {
-  const clickSound = useMemo(() => {
-    return new Howl({
-      src: ["/click1.mp3"], // served from public/
-      preload: true,
-      volume: 0.5,
-    });
-  }, []);
+const clickSound = new Howl({
+  src: ["./click1.mp3"], // served from public/
+  preload: true,
+  volume: 0.5,
+});
 
+const ProfileBox = () => {
   const playClickSound = () => {
     clickSound.stop(); // reset to start
     clickSound.play();
