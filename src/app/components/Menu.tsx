@@ -238,7 +238,7 @@ const ProfileBox = () => {
       {/* Main Content */}
       <div className="p-6 flex flex-col items-center">
         <img
-          src="./ico2.jpg"
+          src="./untitled.png"
           className="w-32 h-32 rounded-full bg-gray-300 mb-4"
         />
         <h2 className="text-4xl text-black font-[family-name:var(--font-jetbrains-mono)]">
