@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { big } from "framer-motion/client";
 import ReactDOM from "react-dom";
 
 type SpawnWindowProps = {
@@ -19,9 +20,16 @@ const SpawnWindow: React.FC<SpawnWindowProps> = ({
   if (typeof document === "undefined") return null;
 
   // determine window dimensions
-  const width = size?.width ?? 800;
-  const height = size?.height ?? 600;
+  const isMobile = typeof window !== "undefined" && window.innerWidth < 640;
+  const width = isMobile ? window.innerWidth : size?.width ?? 800;
+  const height = isMobile ? window.innerHeight : size?.height ?? 600;
 
+  const bounds = {
+    top: 0,
+    left: 0,
+    right: window.innerWidth - 100,
+    bottom: window.innerHeight - height,
+  };
   return ReactDOM.createPortal(
     <motion.div
       className="overflow-hidden absolute top-40 left-40 text-black bg-white border border-black rounded-lg shadow-xl z-50"
@@ -29,12 +37,7 @@ const SpawnWindow: React.FC<SpawnWindowProps> = ({
       initial={{ scale: 0, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
       //  Cant drag out of the screen
-      dragConstraints={{
-        top: 0,
-        left: 0,
-        right: window.innerWidth - width,
-        bottom: window.innerHeight - height,
-      }}
+      dragConstraints={!isMobile ? bounds : undefined}
       exit={{ scale: 0, opacity: 0 }}
       transition={{ duration: 0.3 }}
       style={{ width, height }}

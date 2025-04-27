@@ -4,7 +4,6 @@ import React, { useState, useRef, useEffect, useMemo } from "react";
 import {
   FaInfoCircle,
   FaFolder,
-  FaQuestion,
   FaLink,
   FaEnvelope,
   FaGithub,
@@ -199,9 +198,9 @@ const ProfileBox = () => {
 
       case "projects":
         return (
-          <div className="h-full flex flex-col p-2">
+          <div className="h-full flex flex-col-1 sm:flex-col-2 p-2">
             <div className="flex-1 overflow-auto">
-              <div className="grid grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 {projects.map((proj) => (
                   <div
                     key={proj.id}
@@ -235,7 +234,7 @@ const ProfileBox = () => {
   };
 
   return (
-    <div className="relative w-[800px] h-[600px] bg-white shadow-lg rounded-md border-2 border-black overflow-hidden">
+    <div className="relative w-full max-w-md  sm:max-w-lg md:max-w-xl lg:max-w-2xl h-auto sm:h-[600px] mx-auto bg-white shadow-lg rounded-md border-2 border-black overflow-hidden">
       {/* Top bar */}
       <div className="w-full h-16 bg-gray-800 flex items-center pl-4">
         <h1 className="text-2xl font-[family-name:var(--font-jetbrains-mono)] text-white">
@@ -254,7 +253,6 @@ const ProfileBox = () => {
         </h2>
         <p className="text-black mt-2">Student, gamer and a hobbyist</p>
 
-        {/* Icons / Buttons */}
         <div className="mt-20 flex  space-x-16">
           <div
             onClick={() => {
@@ -295,7 +293,6 @@ const ProfileBox = () => {
         </div>
       </div>
 
-      {/* existing windows */}
       {openWindows.map((win) => (
         <SpawnWindow
           key={win.id}
@@ -310,7 +307,6 @@ const ProfileBox = () => {
         />
       ))}
 
-      {/* new project‑detail window */}
       {selectedProject && (
         <SpawnWindow
           key={selectedProject.id}
