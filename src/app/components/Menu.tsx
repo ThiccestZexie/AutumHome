@@ -83,6 +83,16 @@ const projects: Project[] = [
     tags: ["Java", "lwjgl", "Game Engine"],
     link: "https://github.com/ThiccestZexie/Zaya-GameEngine-DOS",
   },
+  {
+    id: "Monkey Computer",
+    name: "Monkey Computer",
+    title: "https://autumfalls.home/projects/Monkey",
+    imgSrc: "./monkey-computer.png",
+    description:
+      " Skapade och designade en processor I VHDL I kursen Datorkonstruktion. Skapade även en tower defense spel skriven i vår egna assembly language.",
+    tags: ["VHDL", "Assembly", "Computer Architecture"],
+    link: "https://github.com/sermuns/monkey-computer",
+  },
 ];
 
 const clickSound = new Howl({
