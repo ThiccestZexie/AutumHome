@@ -33,6 +33,16 @@ type Project = {
 
 const projects: Project[] = [
   {
+    id: "EagleEye",
+    name: "EagleEye",
+    title: "https://autumfalls.home/projects/EagleEye",
+    imgSrc: "",
+    description:
+      "Min kandidatarbete i kursen TDDD96. Skapade en realtidskamera system med hjälp av Axis communication.",
+    tags: ["Flask", "React", "Python", "TypeScript", "Agile"],
+    link: "https://github.com/kaperkiro/EagleEye-Fullstack",
+  },
+  {
     id: "portfolio",
     name: "Autum Portfolio",
     title: "https://autumfalls.home/projects/portfolio",
